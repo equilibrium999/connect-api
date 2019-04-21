@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "name": "Nokie 3010",
+      "price": "50",
+      "status": true,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "iPhone XS Max",
+      "price": "1699",
+      "status": false
+    },
+    {
+      "id": 3,
+      "name": "Motorola Razor",
+      "price": "99",
+      "status": true
+    },
+    {
+      "id": 4,
+      "name": "Oppo F1s",
+      "price": "240",
+      "status": ""
+    }
+  ]
+}
