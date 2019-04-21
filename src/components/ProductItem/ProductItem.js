@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 class ProductItem extends Component {
+  onDelete = (id) => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Do you want to remove this product?")) {
+      this.props.onDelete(id);
+    }
+  }
+
   render() {
     var {product, index} = this.props;
     var statusName = product.status ? "In stock" : "Out of stock";
     var statusClass = product.status ? "warning" : "default";
     return (
     <tr>
-      <td>{product.id}</td>
+      <td>{index}</td>
       <td>{product.id}</td>
       <td>{product.name}</td>
       <td>{product.price}</td>
@@ -15,8 +23,8 @@ class ProductItem extends Component {
         <span className={`label label-${statusClass}`}>{statusName}</span>
       </td>
       <td>
-        <button type="button" className="btn btn-success mr-10">Edit</button>
-        <button type="button" className="btn btn-danger">Remove</button>
+        <Link to={`/product/${product.id}/edit`} className="btn btn-success mr-10">Edit</Link>
+        <button type="button" className="btn btn-danger" onClick={() => this.onDelete(product.id)}>Remove</button>
       </td>
     </tr>
     );

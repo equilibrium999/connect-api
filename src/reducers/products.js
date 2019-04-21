@@ -1,22 +1,37 @@
-var initialState = [{
-    "id": 1,
-    "name": "iPhone XS Max 64GB",
-    "price": 1799,
-    "status": true
-},{
-    "id": 2,
-    "name": "Samsung Galaxy S10",
-    "price": 1146,
-    "status": false
-},{
-    "id": 3,
-    "name": "HUAWEI P30 Pro",
-    "price": 1599,
-    "status": true
-}];
+import * as Types from "./../constants/ActionTypes";
+
+var initialState = [];
+
+var findIndex = (products, id) => {
+    var result = -1;
+    products.forEach((product, index) => {
+        if (product.id === id) {
+            result = index;
+        }
+    });
+    return result;
+}
 
 const products = (state = initialState, action) => {
+    var index = -1;
+    var {id, product} = action;
     switch (action.type) {
+        case Types.FETCH_PRODUCTS:
+            state = action.products;
+            return [...state];
+        case Types.ADD_PRODUCT:
+            state.push(action.product);
+            return [...state];
+        case Types.UPDATE_PRODUCT:
+            index = findIndex(state, product.id);
+            state[index] = product;
+            return [...state];
+        case Types.DELETE_PRODUCT:
+            index = findIndex(state, id);
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
+            return [...state];
         default:
             return [...state];
     }
